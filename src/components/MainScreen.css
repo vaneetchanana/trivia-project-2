@@ -70,7 +70,7 @@ body {
 .check-answer-button {
     display: block;
     padding: 11px 22px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .play-again-button {
@@ -79,6 +79,6 @@ body {
 
 @media (min-width: 940px) {
     .option {
-        width: 45%;
+        width: 48%;
     }
   }
