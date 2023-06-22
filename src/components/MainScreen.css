@@ -41,7 +41,7 @@ body {
     color: #293264;
     background-color: #F5F7FB;
     padding: 11px 22px;
-    min-width: 65px;
+    width: 100%;
     margin: 0 10px 10px 0;
 }
 
