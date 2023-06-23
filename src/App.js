@@ -8,13 +8,14 @@ import {
 import StartScreen from './components/StartScreen'
 import MainScreen from './components/MainScreen'
 import './App.css';
+import Layout from './components/Layout';
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' >
+        <Route path='/'  element={<Layout />}>
           <Route index element={<StartScreen />} />
           <Route path='main' element={<MainScreen />} />
           {/* catch all route */}

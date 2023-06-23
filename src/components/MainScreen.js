@@ -3,16 +3,19 @@ import './MainScreen.css'
 import React from 'react'
 import Question from './Question'
 import { nanoid } from "nanoid"
+import { useOutletContext } from 'react-router-dom'
+
 
 export default function MainScreen() {
 
     const [triviaData, setTriviaData] = React.useState([])
     const [answersChecked, setAnswersChecked] = React.useState(false)
     const [score, setScore] = React.useState(0)
+    const { apiOptions } = useOutletContext()
 
 
     async function getData() {
-        let res = await fetch("https://opentdb.com/api.php?amount=4&category=14&difficulty=easy&type=multiple")
+        let res = await fetch(`https://opentdb.com/api.php?amount=${apiOptions.number}${apiOptions.category !== "any" ? `&category=${apiOptions.category}` : "" }`)
         let data = await res.json()
 
         const dataArr = data.results.map((element, index) => {
@@ -30,7 +33,7 @@ export default function MainScreen() {
                     id: nanoid(),
                     correctAnswer: false,
                     wrongAnswer: false,
-                    index : index.toString()
+                    index: index.toString()
                 }))
             }
 
@@ -41,7 +44,7 @@ export default function MainScreen() {
                 options: createOptionsArray(incorrectAnswers, correctAnswer)
             }
         })
-        console.log(dataArr )
+        console.log(dataArr)
         setTriviaData(dataArr)
     }
 
@@ -61,18 +64,18 @@ export default function MainScreen() {
                 return {
                     ...obj,
                     options: obj.options.map(option => {
-                    
-                        if(option.id === id) {
+
+                        if (option.id === id) {
                             return {
                                 ...option,
-                                clicked : true
+                                clicked: true
                             }
-                        }else if(option.index === index) {
+                        } else if (option.index === index) {
                             return {
                                 ...option,
-                                clicked : false
+                                clicked: false
                             }
-                        }else {
+                        } else {
                             return option
                         }
 
